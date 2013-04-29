@@ -1,8 +1,8 @@
 Karel_robot
 ===========
 
-everybody knows what it is
-Karel grab gems
+everybody knows what it is\
+Karel grab gems\
 
 Structure
 =========
