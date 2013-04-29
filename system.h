@@ -93,7 +93,6 @@ public:
   //find the function in the table to execute
   void executeCommand(std::vector<std::string>&commandList){
 	
-	
   }
   
   bool win(){
