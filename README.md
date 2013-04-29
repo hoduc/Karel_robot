@@ -19,18 +19,18 @@ myList - the ternary search tree<br />
 
 text - the map file(currently trying to load maps from file)<br />
 map format:<br />
-############ <br />
-##        ## <br />
-##H      g## <br />
-##  ##    ## <br />
-##g ###   ## <br />
-#######>#### <br />
-############ <br />
+############<br />
+##        ##<br />
+##H      g##<br />
+##  ##    ##<br />
+##g ###   ##<br />
+#######>####<br />
+############<br />
 
-# : Wall <br />
-H : home <br />
->/</^/v : Karel <br />
-g : gems <br />
+# : Wall<br />
+H : home<br />
+>/</^/v : Karel<br />
+g : gems<br />
 
 TO DO:<br />
 ======
