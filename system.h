@@ -10,14 +10,17 @@ class System{
 private:
   char **map;
   Robot *robot;
-  Point robot_pos;
   Point home_pos;
   LIST *gemList;
   int gemNo;
   int m_w;
   int m_h;
   std::ifstream io;
-  bool canRun;
+  bool win(){
+	return gemNo == 0 && 
+		  home_pos.x == robot.x && 
+		  home_pos.y == robot.y;
+  }
 public:
   System(std::string map_f){
 	//std::ifstream io;
@@ -45,14 +48,15 @@ public:
 	  map[y] = new char[m_w];
 	  for (int x = 0; x < m_w; ++x){
 	    io >> map[y][x];
+		//left was the wall : '*'
 	    switch(map[y][x]){
 	      case 'H':case 'h': home_pos.set(y,x);
-				 break;
+							 break;
 	      case '>':case '<':
-	      case '^':case 'v': robot_pos.set(y,x);
-			         break;
+	      case '^':case 'v': robot = new robot(y,x);
+							 break;
 	      case 'G':case 'g': gemList->add(y,x);
-			         break;
+							 break;
 	    }
 	  }
 	  
@@ -66,11 +70,9 @@ public:
   }
   
   void run(){
-	if (canRun){
-	  while(!win()){
+	while(!win()){
 		//executeCommand(parseCommand());
 		//drawMap();
-	  }
 	}
   }
   
@@ -93,9 +95,5 @@ public:
   //find the function in the table to execute
   void executeCommand(std::vector<std::string>&commandList){
 	
-  }
-  
-  bool win(){
-	return gemNo == 0;
   }
 };

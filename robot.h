@@ -48,9 +48,6 @@ public:
   
   }
   
-  void incGem(){	
-    this->gem++;
-  }
   int getX(){
 	return x;
   }
@@ -68,5 +65,4 @@ private:
   int y;
   int dir;
   char icon;
-  int gem;
 };

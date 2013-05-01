@@ -1,84 +1,46 @@
-typedef struct position{
-  int x,y;
-}Point;
+#include "point.h"
 
-typedef struct pointNode{
-  Point p;
-  struct pointNode *next;
-  pointNode(int x, int y):next(NULL){p.x = x, p.y = y;}
-}pn;
+typedef struct node{
+	Point p;
+	int factor;	//compare to divide
+	struct node *mid;
+	struct node *left;
+	struct node *right;
+	node(int x, int y):mid(NULL),left(NULL),right(NULL), factor(-1){
+		p.set(x,y);
+	}
+	void set(int x, int y){
+		p.set(x,y);
+	}
+}NODE;
 
-typedef class PointClass{
+typedef class list{
 private:
-  pn *head, *last;
-  int len;
+	NODE *root;
+	int length;
+	int min;
+	int max;
+	void createLevel(NODE*&p,int divfactor){
+		if (divfactor == min || divfactor == max)
+			return;
+		
+	}
 public:
-  PointClass():len(0),head(NULL),last(NULL){}
-  void add(int x, int y){
-    if (len < 1){
-      head = new pn(x,y);
-      last = head;
-    }
-    else{
-      last->next = new pn(x,y);
-      last = last->next;
-    }
-    len++;
-  }
-  
-  pn* removeNode(int x, int y){
-    pn *t = head;
-    pn *pred = NULL;
-    while (t != NULL){
-      if (t->p.x == x && t->p.y == y){
-	std::cout << "Removing nodes:[" << t->p.x << "," << t->p.y << "]" << std::endl;
-	break;
-      }
-      pred = t;
-      t = t->next;
-    }
-    if (t != NULL){
-      //removing head
-      if (pred == NULL){
-	head = head->next;
-	t->next = NULL;
-	return t;
-      }
-	
-      else{
-	pred->next = t->next;
-	t->next = NULL;
-	return t;
-      }
-      len--;
-    }
-    return t;
-  }
-  
-  void delNodes(){
-    while (head != NULL){
-      pn* t = head;
-      head = head->next;
-      t->next = NULL;
-      delete t;
-      t = NULL;
-      len--;
-    }  
-  }
-  
-  void print(){
-    pn* t = head;
-    while (t != NULL){
-      std::cout << "[" << t->p.x << "," << t->p.y << "]";
-      t = t->next;
-    }
-    std::cout << std::endl;
-  }
-  ~PointClass(){
-    if (head != NULL){
-      delNodes();
-    }
-    
-  }
-  
-}PC;
+	list(int mini, int maxi):root(NULL), length(0){
+		min = mini;
+		max = maxi;
+	}
+	void divide(int df){
+		if (root == NULL){
+			root = new NODE(-1,-1);
+			root->factor = df;
+		}
+		while (y < min){
+			createLevel(root->left,df/2);
+			createLevel(root->right,df + max-df/2);
+		}
+	}
+	void add(int x, int y){
+	}
+	void del(int x, int y){}
+}LIST
